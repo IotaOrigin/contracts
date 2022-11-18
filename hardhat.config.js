@@ -1,5 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
+require("hardhat-deploy");
+require("@nomiclabs/hardhat-ethers")
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -19,6 +21,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   defaultNetwork: "alfajores",
+  namedAccounts: {
+     deployer: 0
+  },
   networks: {
     iotaOrigin: {
       url: "https://rpc.iotaorigin.de",
@@ -63,6 +68,16 @@ module.exports = {
            runs: 200,
         },
         viaIR: true,
+        outputSelection: {
+          "*": {
+            "*": [
+              "abi",
+              "evm.bytecode",
+              "evm.deployedBytecode",
+              "metadata",
+            ]
+          },
+        },
      },
   },
 };
