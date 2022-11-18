@@ -15,5 +15,10 @@ cp .env.sample .env
 3. Deploy smart Contract
 
 ```shell
-npx hardhat run --network <network_name> scripts/deploy.js
+npx hardhat --network <network_name> deploy
+```
+4. Verify smart Contract
+
+```shell
+npx hardhat --network <network_name> sourcify
 ```
