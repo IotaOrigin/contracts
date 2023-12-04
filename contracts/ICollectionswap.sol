@@ -7,6 +7,7 @@ import {IERC721Enumerable} from "@openzeppelin/contracts/token/ERC721/extensions
 interface ICollectionswap is IERC721, IERC721Enumerable {
     struct LPTokenParams721ETH {
         address nftAddress;
+        address tokenAddress;
         address bondingCurveAddress;
         address payable poolAddress;
         uint96 fee;

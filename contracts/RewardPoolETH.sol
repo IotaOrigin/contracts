@@ -225,7 +225,7 @@ contract RewardPoolETH is IERC721Receiver {
         uint256 amount0 = _nft.balanceOf(address(_pair));
         uint256 amount1 = address(_pair).balance;
         uint256 indicatorAtLeastOneBid = 1;
-        ( , , ,uint256 bidPrice, ) = _pair.getSellNFTQuote(1);
+        ( , , ,uint256 bidPrice, ,) = _pair.getSellNFTQuote(1,1);
         if (amount1 < bidPrice) {
             indicatorAtLeastOneBid = 0;
         }

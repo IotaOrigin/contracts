@@ -12,12 +12,14 @@ contract Collectionstaker is Ownable {
     uint256 public constant MAX_REWARD_TOKENS = 5;
 
     /// @notice Event emitted when a liquidity mining incentive has been created
+    /// @param creator The creator Address
     /// @param poolAddress The Reward pool address
     /// @param rewardTokens The tokens being distributed as a reward
     /// @param rewards The amount of reward tokens to be distributed
     /// @param startTime The time when the incentive program begins
     /// @param endTime The time when rewards stop accruing
     event IncentiveETHCreated(
+        address creator,
         address poolAddress,
         IERC20[] rewardTokens,
         uint256[] rewards,
@@ -79,6 +81,6 @@ contract Collectionstaker is Ownable {
             }
         }
 
-        emit IncentiveETHCreated(address(rewardPool), rewardTokens, rewards, startTime, endTime);
+        emit IncentiveETHCreated(msg.sender, address(rewardPool), rewardTokens, rewards, startTime, endTime);
     }
 }

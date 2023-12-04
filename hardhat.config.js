@@ -25,16 +25,23 @@ module.exports = {
      deployer: 0
   },
   networks: {
-    iotaOrigin: {
-      url: "https://rpc.iotaorigin.de",
-      chainId: 1074,
+    shimmerevm: {
+      url: "https://json-rpc.evm.shimmer.network",
+      chainId: 148,
       accounts: [`${process.env.PRIVATE_KEY}`],
       timeout: 60000,
     },
-/*    mumbai: {
-      url: "https://polygon-mumbai.g.alchemy.com/v2/QRhHWlnPOL4P0bvKTR34_SJyOshiR9nG",
+    shimmerevmtestnet: {
+      url: "https://json-rpc.evm.testnet.shimmer.network/",
+      chainId: 1073,
       accounts: [`${process.env.PRIVATE_KEY}`],
-    },*/
+      timeout: 60000,
+    },
+    goerli: {
+      url: "https://eth-goerli.g.alchemy.com/v2/DUPGDHnXTGrPAm7K73wATu8U6HQfXnki",
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
+      chainId: 5,
+    },
     alfajores: {
       url: "https://alfajores-forno.celo-testnet.org",
       accounts: [process.env.PRIVATE_KEY],
@@ -59,6 +66,32 @@ module.exports = {
        url: "http://127.0.0.1:8545/",
        accounts: [process.env.PRIVATE_KEY],
     },
+  },
+ etherscan: {
+    apiKey: {
+      'shimmerevm': 'ABCDE12345ABCDE12345ABCDE123456789',
+      'shimmerevmtestnet': 'ABCDE12345ABCDE12345ABCDE123456789',
+      'goerli': 'D3NF56WIXRZKS4Z68VQ2TAGDFS4HU392W5',
+    },
+    customChains: [
+      {
+        apikey: "ABCDE12345ABCDE12345ABCDE123456789",
+        network: "shimmerevmtestnet",
+        chainId: 1073,
+        urls: {
+          apiURL: "https://explorer.evm.testnet.shimmer.network/api",
+          browserURL: "https://explorer.evm.testnet.shimmer.network/"
+        }
+      },
+      {
+        network: 'shimmerevm',
+        chainId: 148,
+        urls: {
+          apiURL: 'https://explorer.evm.shimmer.network/api',
+          browserURL: 'https://explorer.evm.shimmer.network/',
+        },
+      },
+    ],
   },
   solidity: {
     version: "0.8.17",
