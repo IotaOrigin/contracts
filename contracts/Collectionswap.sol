@@ -35,7 +35,7 @@ contract Collectionswap is OwnableWithTransferCallback, ERC1155Holder, ERC721, E
     /// @dev The ID of the next token that will be minted. Skips 0
     uint256 private _nextTokenId;
 
-    event NewPair(address poolAddress); // @dev: Used for tests
+    event NewERC721Pair(address indexed poolAddress, uint256[] initialIds); // @dev: Used for tests
     event NewTokenId(uint256 tokenId);
     event ERC20Rescued();
     event ERC721Rescued();
@@ -134,6 +134,7 @@ contract Collectionswap is OwnableWithTransferCallback, ERC1155Holder, ERC721, E
 
     function validatePoolParamsLte(
         uint256 tokenId,
+        address tokenAddress,
         address nftAddress,
         address bondingCurveAddress,
         uint96 fee,
@@ -141,6 +142,7 @@ contract Collectionswap is OwnableWithTransferCallback, ERC1155Holder, ERC721, E
     ) public view returns (bool) {    
         LPTokenParams721ETH memory poolParams = viewPoolParams(tokenId);
         return (
+            poolParams.tokenAddress == tokenAddress &&
             poolParams.nftAddress == nftAddress &&
             poolParams.bondingCurveAddress == bondingCurveAddress &&
             poolParams.fee <= fee &&
@@ -150,6 +152,7 @@ contract Collectionswap is OwnableWithTransferCallback, ERC1155Holder, ERC721, E
 
     function validatePoolParamsEq(
         uint256 tokenId,
+        address tokenAddress,
         address nftAddress,
         address bondingCurveAddress,
         uint96 fee,
@@ -157,6 +160,7 @@ contract Collectionswap is OwnableWithTransferCallback, ERC1155Holder, ERC721, E
     ) public view returns (bool) {    
         LPTokenParams721ETH memory poolParams = viewPoolParams(tokenId);
         return (
+            poolParams.tokenAddress == tokenAddress &&
             poolParams.nftAddress == nftAddress &&
             poolParams.bondingCurveAddress == bondingCurveAddress &&
             poolParams.fee == fee &&

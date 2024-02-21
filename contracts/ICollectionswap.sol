@@ -24,6 +24,7 @@ interface ICollectionswap is IERC721, IERC721Enumerable {
 
     function validatePoolParamsLte(
         uint256 tokenId,
+        address tokenAddress,
         address nftAddress,
         address bondingCurveAddress,
         uint96 fee,
@@ -35,6 +36,7 @@ interface ICollectionswap is IERC721, IERC721Enumerable {
 
     function validatePoolParamsEq(
         uint256 tokenId,
+        address tokenAddress,
         address nftAddress,
         address bondingCurveAddress,
         uint96 fee,
